@@ -1,0 +1,103 @@
+<!-- ...existing code... -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gallery — MyPhotos</title>
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">MyPhotos</a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Gallery</h1>
+
+    <div class="filters" role="tablist" aria-label="photo categories">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="landscape" id="landscape">Landscape</button>
+      <button class="filter-btn" data-filter="portrait" id="portrait">Portrait</button>
+      <button class="filter-btn" data-filter="street" id="street">Street</button>
+    </div>
+
+    <div id="gallery" class="grid gallery-grid">
+      <div class="card" data-cat="landscape"><img src="https://picsum.photos/seed/land1/800/500" alt="Landscape 1"><div class="card-caption">Landscape 1</div></div>
+      <div class="card" data-cat="portrait"><img src="https://picsum.photos/seed/por1/500/800" alt="Portrait 1"><div class="card-caption">Portrait 1</div></div>
+      <div class="card" data-cat="street"><img src="https://picsum.photos/seed/str1/800/500" alt="Street 1"><div class="card-caption">Street 1</div></div>
+      <div class="card" data-cat="landscape"><img src="https://picsum.photos/seed/land2/800/500" alt="Landscape 2"><div class="card-caption">Landscape 2</div></div>
+      <div class="card" data-cat="portrait"><img src="https://picsum.photos/seed/por2/500/800" alt="Portrait 2"><div class="card-caption">Portrait 2</div></div>
+      <div class="card" data-cat="street"><img src="https://picsum.photos/seed/str2/800/500" alt="Street 2"><div class="card-caption">Street 2</div></div>
+      <div class="card" data-cat="landscape"><img src="https://picsum.photos/seed/land3/800/500" alt="Landscape 3"><div class="card-caption">Landscape 3</div></div>
+      <div class="card" data-cat="portrait"><img src="https://picsum.photos/seed/por3/500/800" alt="Portrait 3"><div class="card-caption">Portrait 3</div></div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+      <button class="lightbox-close" aria-label="Close">✕</button>
+      <img id="lightbox-img" src="" alt="">
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 MyPhotos</p>
+    </div>
+  </footer>
+
+<!--// ...existing code...-->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('#gallery .card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(c => {
+        c.style.display = (f === 'all' || c.dataset.cat === f) ? 'block' : 'none';
+      });
+    });
+  });
+
+  // lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbClose = document.querySelector('.lightbox-close');
+
+  document.querySelectorAll('#gallery .card img').forEach(imgEl => {
+    imgEl.addEventListener('click', (e) => {
+      lbImg.src = e.currentTarget.src;
+      lbImg.alt = e.currentTarget.alt || '';
+      lightbox.classList.add('visible');
+      lightbox.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  function closeLB() {
+    lightbox.classList.remove('visible');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lbImg.src = '';
+    lbImg.alt = '';
+  }
+
+  lbClose.addEventListener('click', closeLB);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLB(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
+});
+</script>
+<!-- ...existing code...-->
+</body>
+</html>
+<!-- ...existing code... -->

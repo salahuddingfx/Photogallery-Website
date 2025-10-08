@@ -1,0 +1,86 @@
+<!-- ...existing code... -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography — Home</title>
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loader-spinner" aria-hidden="true"></div>
+        <div class="loader-text">Loading photos…</div>
+    </div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="index.html">MyPhotos</a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Discover photography that tells stories</h1>
+                <p>Curated collections of landscapes, portraits and street shots. Browse the full gallery or contact us for commissions.</p>
+                <a class="btn" href="gallery.html">Open Gallery</a>
+            </div>
+            <div class="hero-preview">
+                <img src="https://picsum.photos/seed/hero1/800/520" alt="Hero preview">
+            </div>
+        </section>
+
+        <section class="about">
+            <h2>About Us</h2>
+            <p>This website showcases a collection of stunning photographs across various categories including landscapes, portraits, and street photography. Our aim is to inspire and connect with fellow photography enthusiasts.</p>
+        </section>
+
+        <section class="mission">
+            <h2>Our Mission</h2>
+            <p>We believe in the power of photography to tell stories and evoke emotions. Join us on this visual journey and discover the world through our lens.</p>
+        </section>
+
+        <section class="featured">
+            <h3>Featured</h3>
+            <div class="grid featured-grid">
+                <a class="card" href="gallery.html#landscape">
+                    <img src="https://picsum.photos/seed/land1/600/400" alt="Landscape featured">
+                    <div class="card-caption">Landscape</div>
+                </a>
+                <a class="card" href="gallery.html#portrait">
+                    <img src="https://picsum.photos/seed/por1/600/800" alt="Portrait featured">
+                    <div class="card-caption">Portrait</div>
+                </a>
+                <a class="card" href="gallery.html#street">
+                    <img src="https://picsum.photos/seed/str1/600/400" alt="Street featured">
+                    <div class="card-caption">Street</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 MyPhotos — All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // hide loading screen after page fully loads
+        window.addEventListener('load', () => {
+            const l = document.getElementById('loadingScreen');
+            if (!l) return;
+            l.classList.add('hidden');
+            setTimeout(() => { l.remove(); }, 500);
+        });
+    </script>
+</body>
+</html>
+<!-- ...existing code... -->
